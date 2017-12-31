@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+# Perl Script to login to a datbase and print all tables and number of rows in each
 use strict;
 use warnings;
 use DBI;
