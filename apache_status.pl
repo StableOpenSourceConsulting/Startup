@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# uses output from apache server-status to monitor how many apache worker processes are busy and Requests Per Second
+# Perl Script to use output from apache server-status to monitor how many apache worker processes are busy and Requests Per Second
 # cs 6/6/2017
 use strict;
 use warnings;
