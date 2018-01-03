@@ -5,14 +5,16 @@ use strict;
 use warnings;
 use ADroutines;
 
+# Check server name and ajust connections to apache staus page, based on this.
 my $port = IS_get_server_name() eq 'Endive' ? qq{:7080\\} : '';
 my $domain  = IS_get_server_name() eq 'Endive' ? 'criisrestore' : 'criis';
 
-my $apache_status = "lynx -auth=Stats4U\$\:'CR!!S4pache5tat54U\$\' -dump http:\/\/localhost\$port/server-status?auto";
+#Install Lync to allow connection to apache-status
+my $apache_status = "lynx -auth=Stats4U\$\:'your UserNameUserPassword\$\' -dump http:\/\/localhost\$port/server-status?auto";
 my @apache_stats=split(/\s/,`$apache_status`); # Use space to separate array elements. Makes it easier to select numbers later
 chomp @apache_stats;
 
-# Print out all stats to a file for zabbix to monitor
+# Print out all stats to a file for zabbix to monitor in /var/tmp
 open(my $fh, ">", "/var/tmp/apache_status.txt");
 my @apache_op=split(/\n/,`$apache_status`);
 for (@apache_op) {
