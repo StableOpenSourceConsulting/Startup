@@ -1,0 +1,22 @@
+
+- name: Copy SOSC specific fail2ban rules (Jails) and apache_404_403 filter to apache hosts. Then restart service. Finally check the service is enabled
+  hosts: testcentos1,testdebain1,-jmetertest
+  become: true
+  become_method: sudo
+
+  tasks:
+
+  - copy:
+        src: "{{item.src}}"
+        dest: "{{item.dest}}"
+        mode: 0644
+        backup: yes
+    with_items:
+        - { src: '/admin/git/SOSCrepo/admin/fail2ban/fail2ban.conf', dest: '/etc/fail2ban/'}       
+        - { src: '/admin/git/SOSCrepo/admin/fail2ban/jail-ssh.local', dest: '/etc/fail2ban/jail.local'}
+
+
+  - service:
+       name: fail2ban
+       state: restarted
+       enabled: yes
