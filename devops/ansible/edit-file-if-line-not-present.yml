@@ -1,0 +1,13 @@
+- hosts: centosservers
+  tasks:
+   - name: add valid TO email address, FROM address and remove root@localhost from /etc/sysconfig/rkhunter
+     become: true
+     become_method: sudo
+     lineinfile:
+       dest: "{{ item.dest }}"
+       state: "{{ item.state }}"
+       line: "{{ item.line }}"
+     with_items:
+          - { dest: '/etc/sysconfig/rkhunter', state: 'present', line: 'MAILTO=errorz@customer.com' }
+          - { dest: '/etc/sysconfig/rkhunter', state: 'absent', line: 'MAILTO=root@localhost' }
+          - { dest: '/etc/sysconfig/rkhunter', state: 'present', line: 'MAILFROM=donotreply@customer.com' 
