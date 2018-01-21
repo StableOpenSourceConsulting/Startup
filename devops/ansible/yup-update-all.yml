@@ -1,0 +1,9 @@
+#- hosts: all
+- hosts: centosservers,!test1,!test2
+
+  tasks:
+     - name: yum update for the all packages. Use -v --check options on playbbook command line to view the changes
+          yum: name=* state=latest
+               become: true
+                    become_method: sudo
+
