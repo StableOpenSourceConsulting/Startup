@@ -12,11 +12,11 @@ use strict;
 use warnings;
 
 
-print "Note: This script sends approx 3,000 Emails to all Criis users with a message defined in criisrestore.org.uk:/var/www/vhosts/criisrestore.org.uk/dr_scripts/message.txt\n";
+print "Note: This script sends approx 3,000 Emails to all users with a message defined in customer-domain.com:/var/www/customerdoamin.com/dr_scripts/message.txt\n";
 print "Are you sure you want to continue Y/n ? ";
 my $answer = <>;
 chomp $answer;
 if ($answer eq "Y") {
 print "Thanks. Now running customer domain.com:/var/www/customerdomain/dr_scripts/email_alert_criis_users.pl\n";
-system ('cd /var/www/vhosts/criis.org.uk/aws;ssh -i "xxxxxTEST.pem" centos@customerlan.org.uk "sudo /var/www/customert.lonnodn.uk/dr_scripts/email_alert_criis_users.pl" or die "Something is wrong with the remote script on aws adminserver"')
+system ('cd /var/www/vhosts/customer-doamin.com/aws;ssh -i "xxxxxTEST.pem" centos@customerlan.com "sudo /var/www/customert.london.uk/dr_scripts/email_alert_users.pl" or die "Something is wrong with the remote script on aws adminserver"')
 }
